@@ -6,9 +6,12 @@ class Node {
 }
 
 class LinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
+  constructor(data) {
+    this.head = {
+        data:data,
+        next: null
+    };
+    this.tail = this.head;
     this.length = 0;
   }
   print() {
@@ -24,7 +27,7 @@ class LinkedList {
   traverse(idx) {
     let count = 0;
     let current = this.head;
-    while (count <= idx) {
+    while (count < idx) {
       count++;
       current = current.next;
     }
@@ -37,25 +40,18 @@ class LinkedList {
 
   append(data) {
     var new_node = new Node(data);
-    if (!this.head) {
-      this.head = new_node;
-      this.tail = new_node;
-    } else {
-      this.tail.next = new_node;
-      this.tail = new_node;
-    }
+
+    this.tail.next = new_node;
+    this.tail = new_node;
+
     this.length++;
   }
 
   prepend(data) {
     var new_node = new Node(data);
-    if (this.head) {
-      new_node.next = this.head;
-      this.head = new_node;
-    } else {
-      this.head = new_node;
-      this.tail = new_node;
-    }
+  
+    new_node.next = this.head;
+    this.head = new_node;
     this.length++;
   }
   // 90 , 2
@@ -68,11 +64,18 @@ class LinkedList {
     */
   insert(val, idx) {
     var new_node = new Node(val);
-    var p1 = this.traverse(idx - 1);
+    var p1 = this.traverse(idx-1);
     const p2 = p1.next;
 
     p1.next = new_node;
     new_node.next = p2;
+  }
+  
+  remove(idx){
+      var p1 = this.traverse(idx - 1);
+      var p2 = p1.next.next;
+      p1.next = p2;
+      return this
   }
 
   reverse() {
@@ -91,14 +94,26 @@ class LinkedList {
   }
 }
 
-const ll = new LinkedList();
+const ll = new LinkedList(10);
 ll.append(19);
 ll.append(9);
 ll.append(56);
 ll.append(89);
 ll.prepend(99);
 ll.prepend(10);
-ll.insert(123, 4);
-ll.reverse();
+ll.insert(123, 1);
+// ll.reverse();
+
+ll.remove(3);
 
 ll.print();
+
+
+
+
+
+
+
+
+
+
