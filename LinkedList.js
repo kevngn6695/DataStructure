@@ -1,3 +1,9 @@
+/**
+ *
+ * Linked List
+ *
+ */
+
 class Node {
   constructor(data) {
     this.data = data;
@@ -8,8 +14,8 @@ class Node {
 class LinkedList {
   constructor(data) {
     this.head = {
-        data:data,
-        next: null
+      data: data,
+      next: null,
     };
     this.tail = this.head;
     this.length = 0;
@@ -49,9 +55,10 @@ class LinkedList {
 
   prepend(data) {
     var new_node = new Node(data);
-  
+
     new_node.next = this.head;
     this.head = new_node;
+
     this.length++;
   }
   // 90 , 2
@@ -64,18 +71,19 @@ class LinkedList {
     */
   insert(val, idx) {
     var new_node = new Node(val);
-    var p1 = this.traverse(idx-1);
+    var p1 = this.traverse(idx - 1);
     const p2 = p1.next;
 
     p1.next = new_node;
     new_node.next = p2;
   }
-  
-  remove(idx){
-      var p1 = this.traverse(idx - 1);
-      var p2 = p1.next.next;
-      p1.next = p2;
-      return this
+
+  remove(idx) {
+    var p1 = this.traverse(idx - 1);
+    var p2 = p1.next.next;
+    p1.next = p2;
+    this.length;
+    return this;
   }
 
   reverse() {
@@ -107,13 +115,3 @@ ll.insert(123, 1);
 ll.remove(3);
 
 ll.print();
-
-
-
-
-
-
-
-
-
-
